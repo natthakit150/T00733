@@ -1,0 +1,27 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<ul>
+  <p-table [value]="proService.customerList">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ชื่อ-นามสกุล</th>
+        <th>ชื่อสินค้า</th>
+        <th>รายละเอียดสินค้า</th>
+        <th>อีเมลล์</th>
+        <th>เบอร์โทร</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pd let-rowIndex=rowIndex>
+      <tr>
+        <td>{{ pd.customer?.fullName }}</td>
+        <td>{{ pd.product?.productName }}</td>
+        <td>{{ pd.product?.productDesc }}</td>
+        <td>{{ pd.customer?.email }}</td>
+        <td>{{ pd.customer?.tel }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" (click)="editClick(pd.orderId)"></button>&nbsp;
+          <button pButton type="button" icon="pi pi-trash" (click)="goToDelete(pd.orderId, rowIndex)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ul>

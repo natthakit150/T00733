@@ -1,0 +1,55 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <div class="p-grid p-justify-center">
+    <div class="p-col" style="text-align: right;">
+      <label for="firstName">First Name : </label>
+    </div>
+    <div class="p-col">
+      <input type="text" pInputText formControlName="firstName" />
+    </div>
+    <div class="p-col" style="text-align: right;">
+      <label for="lastName">Last Name : </label>
+    </div>
+    <div class="p-col">
+      <input type="text" pInputText formControlName="lastName" />
+    </div>
+  </div>
+  <div class="p-grid p-justify-center">
+    <div class="p-col" style="text-align: right;">
+      <label for="email">Email : </label>
+    </div>
+    <div class="p-col">
+      <input type="text" pInputText formControlName="email" />
+    </div>
+    <div class="p-col" style="text-align: right;">
+      <label for="product">Product : </label>
+    </div>
+    <div class="p-col">
+      <p-dropdown
+        formControlName="product"
+        id="product"
+        [options]="productList"
+        optionLabel="productName"
+        placeholder="Select a Product"
+        [showClear]="true"
+      >
+      </p-dropdown>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12" style="text-align: center;">
+      <button pButton type="submit" label="ค้นหา"></button> &nbsp;
+      <button pButton type="button" label="ยกเลิก"></button>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-12" style="text-align: right;">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-plus"
+        label="เพิ่ม"
+        (click)="addClick()"
+      ></button>
+    </div>
+  </div>
+</form>

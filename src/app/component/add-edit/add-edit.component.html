@@ -1,0 +1,88 @@
+<h1>Sale Online</h1>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm)">
+  <div class="p-grid p-justify-center">
+    <div class="p-col-5" style="text-align: right;">
+      <label for="orderDate">Order Date : </label>
+    </div>
+    <div class="p-col-7">
+      <p-calendar formControlName="orderDate" [showIcon]="true" ></p-calendar>
+    </div>
+    <div class="p-col-5" style="text-align: right;">
+      <label for="product">Product : </label>
+    </div>
+    <div class="p-col-7">
+      <p-dropdown
+        formControlName="product"
+        id="product"
+        [options]="productList"
+        optionLabel="productName"
+        placeholder="Select a Product"
+        [showClear]="false"
+      >
+      </p-dropdown
+      ><p-message
+        *ngIf="addForm.get('product').hasError('required')"
+        severity="error"
+        text="Field is required"
+      ></p-message>
+    </div>
+    <div class="p-col-5" style="text-align: right;">
+      <label for="customer">Customer : </label>
+    </div>
+    <div class="p-col-7">
+      <p-dropdown
+        formControlName="customer"
+        id="customer"
+        [options]="customerList"
+        optionLabel="fullName"
+        placeholder="Select a Customer"
+        [showClear]="false"
+      >
+      </p-dropdown>
+      <p-message
+        *ngIf="addForm.get('customer').hasError('required')"
+        severity="error"
+        text="Field is required"
+      ></p-message>
+    </div>
+    <div class="p-col-5" style="text-align: right;">
+      <label for="product">Amount : </label>
+    </div>
+    <div class="p-col-7">
+      <input type="text" pInputText formControlName="amount" />
+      <p-message
+        *ngIf="addForm.get('amount').hasError('required')"
+        severity="error"
+        text="Field is required"
+      ></p-message>
+    </div>
+    <div class="p-col-5" style="text-align: right;">
+      <label for="product">Total : </label>
+    </div>
+    <div class="p-col-7">
+      <input
+        type="text"
+        pInputText
+        formControlName="total"
+        [value]="
+          addForm.get('amount').value * addForm.get('product').value.price
+        "
+        disabled="true"
+      />
+    </div>
+    <ng-container *ngIf="addForm.get('orderId').value">
+      <div class="p-col-5" style="text-align: right;">
+        <label for="product">Status : </label>
+      </div>
+      <div class="p-col-7">
+        <p-inputSwitch formControlName="status"></p-inputSwitch>
+      </div>
+    </ng-container>
+    <div class="p-col-10" style="text-align: center;">
+      <button pButton type="submit" label="บันทึก"></button> &nbsp;
+      <button pButton type="button" label="ยกเลิก"  (click)="onReset()"></button> &nbsp;
+      <button pButton type="button" label="กลับ" (click)="backClick()"></button>
+    </div>
+  </div>
+</form>
